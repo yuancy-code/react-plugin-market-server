@@ -7,12 +7,15 @@ router.get('/', async (ctx, next) => {
 })
 
 router.get('/string', async (ctx, next) => {
+  ctx.session.a = 111;
   ctx.body = 'koa2 string'
 })
 
 router.get('/json', async (ctx, next) => {
+  console.log(ctx.session.a, 3333)
   ctx.body = {
-    title: 'koa2 json'
+    title: 'koa2 json',
+    session: ctx.session.a
   }
 })
 
