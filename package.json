@@ -1,7 +1,7 @@
 {
-  "name": "react-plugin-market",
+  "name": "react-plugin-market-server",
   "version": "0.1.0",
-  "private": true,
+  "description": "基于react-plugin-system前端插件系统的插件市场",
   "scripts": {
     "start": "node bin/www",
     "dev": "./node_modules/.bin/nodemon bin/www",
