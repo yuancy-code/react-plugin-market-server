@@ -1,3 +1,11 @@
+/*
+ * @Author: yuanchengyong 
+ * @Date: 2020-02-03 19:38:43 
+ * @Last Modified by: yuanchengyong
+ * @Last Modified time: 2020-02-03 19:39:08
+ * @Des: 配置文件
+ */
+const dbUrl = 'mongodb://localhost:27017/react-plugin-market';
 const session_signed_key = ["some secret hurr"]; // 这个是配合signed属性的签名key
 const session_config = {
     key: 'koa:sess',
@@ -19,5 +27,6 @@ const session_config = {
 };
 module.exports = {
     session_signed_key,
-    session_config
+    session_config,
+    dbUrl
 }
