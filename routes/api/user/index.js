@@ -2,7 +2,7 @@
  * @Author: yuanchengyong 
  * @Date: 2020-02-03 17:22:09 
  * @Last Modified by: yuanchengyong
- * @Last Modified time: 2020-02-03 20:21:58
+ * @Last Modified time: 2020-02-04 13:21:30
  * @Des: 
  */
 const User = require("../../../model/user");
@@ -15,10 +15,43 @@ const findOne = (query) => {
 }
 
 module.exports = (router) => {
+    /**
+     * 登录
+     */
+    router.get('/user/login', async function (ctx, next) {
+        ctx.session.user = {
+            username: 'z137168075', //用户账号 
+            userpwd: 'abcd', //密码
+            nickName: 'Teacher Yuan', //年龄 
+            logindate: new Date()
+        }
+        ctx.body = {
+            resultCode: '0000',
+            resultMessage: 'success'
+        }
+    })
+    /**
+     * 退出
+     */
+    router.get('/user/logout', async function (ctx, next) {
+        ctx.session.user = null;
+        ctx.body = {
+            resultCode: '0000',
+            resultMessage: 'success'
+        }
+    })
     router.get('/user/info', async function (ctx, next) {
+        const user = ctx.session.user;
+        if (!user) {
+            ctx.body = {
+                resultCode: '0003',
+                resultMessage: 'please login!',
+            }
+            return false;
+        }
         try {
             const userInfo = await findOne({
-                'username': 'z137168075'
+                'username': user.username
             });
             if (!userInfo) {
                 ctx.body = {
@@ -89,7 +122,5 @@ module.exports = (router) => {
                 data: e.message
             };
         }
-
-
     })
 }
